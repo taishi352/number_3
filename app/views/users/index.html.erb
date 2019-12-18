@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+  </head>
+
+  <body>
+
+  <div class='container'>
+
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+
+
+    <div class='row'>
+  
+      <div class='col-xs-3'>
+        <h2>User info</h2>
+        <table class='table'>
+          <tr><%= attachment_image_tag current_user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "100x100" %></tr> 
+          <tr>
+        	  <th>name</th>
+        	  <th><%= current_user.name %></th>
+          </tr>
+          <tr>
+        	  <th>introduction</th>
+        	  <th><%= current_user.introduction %></th>
+          </tr>
+        </table>
+
+
+        <div class='row'>
+          <p><%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
+        </div>
+
+        <h2>New book</h2>
+
+        <%= form_for(@book) do |f| %>
+
+          <% if @book.errors.any? %>
+            <h4>Input error:</h4>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <h4>Title</h4>
+          <%= f.text_field :title %>
+
+            <h4>Body</h4>
+            <%= f.text_area :body %>
+
+            <%= f.submit 'Create Book' %>
+
+        <% end %>
+
+      </div>
+
+      <div class='col-xs-9'>
+        <h2>Users</h2>
+
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr> 
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <% @users.each do |user| %>
+
+            <tbody>
+                <tr>
+                  <td><%= attachment_image_tag user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "60x60" %></td>
+                  <td><%= user.name %></td>
+                  <td><%= link_to "Show", user_path(user.id) %></td>
+                </tr>
+            </tbody>
+
+          <% end %>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+    <footer>
+  <div class='container'>
+  	<div class='row'>
+    	<div class='col-xs-3 col-xs-offset-9'>
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

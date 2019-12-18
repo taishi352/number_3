@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+  </head>
+
+  <body>
+
+  	<div class='body'>
+      <div class='container'>
+
+
+
+      	<h2>User info</h2>
+
+<%= form_for(@user) do |f| %>
+
+  <div class="field">
+    <label for="user_name">Name</label>
+    <%= f.text_field :name, class:"form-control", placeholder:"ユーザ名" %>
+    <span class="fa fa-building form-control-icon" aria-hidden="true"></span>
+  </div>
+
+  <div class="field">
+    <label for="user_image">Image</label>
+    <%= f.attachment_field :profile_image %>
+  </div>
+
+  <div class="field">
+    <label for="user_introduction">Introduction</label>
+    <%= f.text_field :introduction, class:"form-control", placeholder:"本文" %>
+    <span class="fa fa-building form-control-icon" aria-hidden="true"></span>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update User", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+  </div>
+<% end %>
+      </div>
+    </div>
+
+    <footer>
+  <div class='container'>
+  	<div class='row'>
+    	<div class='col-xs-3 col-xs-offset-9'>
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

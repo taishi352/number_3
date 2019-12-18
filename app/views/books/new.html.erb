@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+  </head>
+
+  <body>
+
+<div class='body'>
+<div class='container'>
+
+        <p id="notice">Signed in successfully.</p>
+
+
+  <div class='row'>
+  
+  <div class='col-xs-3'>
+    <h2>User info</h2>
+    <table class='table'>
+      <tr><%= attachment_image_tag @user, :profile_image, format: 'jpeg',fallback: "no_image.jpg", size: "100x100" %></tr> 
+      <tr>
+        <th>name</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= @user.introduction %></th>
+      </tr>
+    </table>
+    <%= link_to "プロフィール編集", new_user_path %>
+
+
+    <div class='row'>
+      <a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_9814" href="/users/9814/edit"></a>
+    </div>
+
+    <h2>New book</h2>
+    
+    <%= form_for(@book) do |f| %>
+      
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+
+      <h4>Body</h4>
+      <%= f.text_area :body %>
+
+      <%= f.submit 'Create Book' %>
+
+    <% end %>
+
+  </div>
+
+    <div class='col-xs-9'>
+      <h2>Book Detail</h2>
+
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr> 
+            <th></th>
+            <th>title</th>
+            <th>opinion</th>
+            <th></th>
+          </tr>
+        </thead>
+
+
+        <tbody>
+            <tr>
+              <td><a href="/users/9814">
+                <img class="attachment user profile_image" src="/attachments/2ed7c4c6b203429ce5675039a44992f08b29efb0/store/fill/50/50/05c8a04fdcd571d14f8bcda6ab316f5da0dbc739a68ccd63025d39eb911a/profile_image" alt="Profile image" /></a></td>
+              <td><%= @book.title %></td>
+              <td><%= @book.body %></td>
+              <td><%=link_to "Edit",edit_book_path(@book.id) %></td>
+              <td><%= link_to "Destroy", book_path, method: :delete %>
+            </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+    <footer>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-3 col-xs-offset-9'>
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
